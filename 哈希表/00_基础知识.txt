@@ -1,0 +1,13 @@
+哈希表用来判断一个元素是否出现在集合中。O(1)
+
+什么是哈希表:
+将字符串==hashcode()==>索引（哈希碰撞）==> [拉链法，线性探测法(tableSize>dataSize)]
+
+常用哈希结构:
+数组/set/map
+
+std:set: 红黑树  O(logn)  【有序】  map
+std:unordered_set 哈希表 O(1) 【无序】unordered_map
+std:multiset 红黑树 O(logn) 【有序，可重复】multimap
+
+查找一个元素是否在集合中。 result_setname.find(e) != result_setname.end();
