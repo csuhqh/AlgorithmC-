@@ -7,8 +7,7 @@ using namespace std;
 
 class Solution {
 public:
-    //方法1：其实是判断有没有这种组合。
-    //方法2: 判断dp[i]是否能组合成dp[i]==i (不重复)
+
     /**
      * 使用方法1
     */
@@ -37,5 +36,30 @@ public:
         }
       }
       return dp[nums.size() - 1][capacity];
+    }
+};
+
+//sum
+class Solution {
+public:
+    int findTargetSumWays(vector<int>& nums, int target) {
+        //计算背包容量
+        int sum = 0;
+        for(int i = 0; i < nums.size(); ++i) sum += nums[i];
+        if((sum + target) % 2 == 1) return 0;
+        int capacity = (sum + target) / 2;
+        if(capacity < 0) return 0;
+        //多少种组合可以变成target的一半呢
+        vector<int> dp(capacity + 1);
+        //dp[i] = max(dp[i], dp[i - nums[i]] + target); 逆序
+        dp[0] = 1;
+
+        for(int i = 1;i <= nums.size(); ++i){
+            int num = nums[i - 1];
+            for(int j = capacity; j >= num; --j){
+                dp[j] += dp[j - num];
+            }
+        }
+        return dp[capacity];
     }
 };

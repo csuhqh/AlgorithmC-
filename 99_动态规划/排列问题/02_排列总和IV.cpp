@@ -27,3 +27,22 @@ public:
       return dp[target];
     }
 };
+
+class Solution {
+public:
+    int combinationSum4(vector<int>& nums, int target) {
+        //dp[target]总和为target的组合数量
+        //dp[i] += dp[i - nums[j]]
+        vector<uint32_t> dp(target + 1);
+        dp[0] = 1;
+        for(int i = 1; i <= target; ++i){
+            for(int j = 0; j < nums.size(); ++j){
+                if(i >= nums[j]) dp[i] += dp[i - nums[j]];
+                else dp[i] += 0;
+            }
+
+        }
+        return dp[target];
+    }
+
+};

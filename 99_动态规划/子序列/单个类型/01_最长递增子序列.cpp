@@ -98,3 +98,25 @@ public:
         return res;
     }
 };
+
+
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& nums) {
+        //1. dp[i]以nums[i]为结尾的串的最长递增子序列长度
+        //2. dp[i] = max(dp[i], dp[j] + 1)
+        vector<int> dp(nums.size(), 1);
+        int res = 1;
+        for(int i = 0; i < nums.size(); ++i){
+            for(int j = 0; j < i; ++j){
+                if(nums[j] < nums[i]){
+                    dp[i] = max(dp[j] + 1, dp[i]);
+                }else{
+                    dp[i] = max(dp[i], 1);
+                }
+            }
+            res = max(res, dp[i]);
+        }
+        return res;
+    }
+};

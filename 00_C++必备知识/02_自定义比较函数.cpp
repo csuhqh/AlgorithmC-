@@ -17,7 +17,23 @@ bool cmp(int &a, int &b){
 }
 
 int main(){
-
+  //内置堆
+  struct CMP{ 
+    bool operator()(int a, int b){
+      return a < b; //less，构建大顶堆。
+    }
+  };
+  class CMP2{
+    public:
+      bool operator()(int a, int b){
+      return a < b; //less，构建大顶堆。
+    }
+  };
+  priority_queue<int, vector<int>, CMP> pq; 
+  pq.push(1);
+  pq.push(7);
+  pq.push(0);
+  cout << pq.top() << endl; // print 7
 
 
   return 0;

@@ -15,7 +15,7 @@ public:
         for(int j = 0; j < wordDict.size(); ++j){
           string word = wordDict[j];
           if(i >= word.length()){
-            if(s.substr(i - word.length(), word.length()) == word){
+            if(s.substr(i - word.length(), word.length()) == word){ //注意还要验证单词是否相等。
               dp[i] = dp[i - word.length()] && true;
               if(dp[i]) break; //关键，我们只在乎dp[i]能不能组合成功， 既然知道为true就直接返回
             }

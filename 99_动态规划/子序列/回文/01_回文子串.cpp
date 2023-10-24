@@ -54,4 +54,46 @@ public:
         }
         return res;
     }
+
+};
+
+//
+class Solution {
+public:
+    int countSubstrings(string s) {
+        vector<vector<int>> dp(s.size(), vector<int>(s.size()));
+
+        //dp[i][j] = dp[i + 1][j - 1] && s[i]== s[j]
+        int res = s.size();
+        for(int i = 0; i < s.size();++i){
+            dp[i][i] = 1;
+        }
+        // for(int i = s.size() - 1; i >= 0; --i){
+        //     for(int j = i - 1; j >= 0; --j){
+        //         cout << "(" << i << j << endl;
+        //         if(s[i] == s[j]){
+        //             if(i - j == 1 || dp[j + 1][i - 1]){
+        //                 dp[j][i] = 1;
+        //                 cout << "i - j" << i - j << " == "<< i << " " << j<< " " <<endl;
+        //                 res++;
+        //             }else{
+        //                 dp[j][i] = 0;
+        //             }
+        //         }else{
+        //             dp[j][i] = 0;
+        //         }
+        //     }
+        // }
+        for(int j = 0; j < s.size(); ++j){
+            for(int i = j - 1; i >= 0; --i){
+                if(s[i] == s[j]){
+                    if(j - i == 1 || dp[i + 1][j - 1]){
+                        res++;
+                        dp[i][j] = 1;
+                    }
+                }
+            }
+        }
+        return res;
+    }
 };

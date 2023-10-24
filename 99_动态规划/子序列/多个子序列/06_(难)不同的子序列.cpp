@@ -35,7 +35,7 @@ public:
         for(int i = 1; i <= s.size(); ++i){
             for(int j = 1; j <= t.size(); ++j){
                 if(s[i] == t[j]){
-                    dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j];
+                    dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j]; //不重复情况 + 重复情况
                 }else{
                     dp[i][j] = dp[i - 1][j]; 
                 }
